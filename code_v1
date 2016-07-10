@@ -23,7 +23,13 @@ def main():
             #links = re.findall(r'<link.*?href="(.*?)"',sourcecode)
             links = re.findall(b'<link>(.*?)</link>', sourcecode)
             for link in links:
-                print(link)            
+                if '.rdf' in link:
+                    pass
+                else:
+                    print "Let's visit:",link
+                    content = opener.open(link).read()
+                    contents = re.findall(r'<p>(.*?)</p>',content)
+                    print contents
 
         except Exception, e:
             print str(e)
