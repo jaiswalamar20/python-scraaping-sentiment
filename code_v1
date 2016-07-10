@@ -1,0 +1,72 @@
+import urllib2
+from urllib2 import urlopen
+import re
+import cookielib
+from cookielib import CookieJar
+import time
+
+cj = CookieJar()
+opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+opener.addheaders = [('User-agent','Mozilla/5.0')]
+
+
+def main():
+    try:
+        page = 'http://www.huffingtonpost.com/feeds/index.xml'
+        sourcecode = opener.open(page).read()
+        #print sourcecode
+    
+        try:
+            titles = re.findall(r'<title>(.*?)</title>',sourcecode)
+            #for title in titles:
+             #   print title
+            #links = re.findall(r'<link.*?href="(.*?)"',sourcecode)
+            links = re.findall(b'<link>(.*?)</link>', sourcecode)
+            for link in links:
+                print(link)            
+
+        except Exception, e:
+            print str(e)
+
+
+    except Exception, e:
+        print str(e)
+
+
+main()
+
+'''
+#for python 3.4
+
+import time
+import urllib
+import urllib.request
+from urllib.request
+import urlopen
+import re
+from http.cookiejar
+import CookieJar
+import http.cookiejar
+import datetime
+import pprint
+cj = CookieJar()
+opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+def main():
+    try:
+        page = 'http://online.wsj.com/xml/rss/3_7201.xml'
+        sourcecode = opener.open(page).read()
+        #print(sourcecode)
+        try:
+            titles = re.findall(b'<title>(.*?)</title>', sourcecode)
+            links = re.findall(b'<link>(.*?)</link>', sourcecode)
+            for title in titles:
+                print(title)
+            for link in links:
+                print(link)
+        except Exception as e:
+            print (e)
+     except Exception as e:
+         print(e)
+main()
+'''
