@@ -23,3 +23,16 @@ auth.set_access_token(atoken, asecret)
 
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["car"])
+
+
+###changes made in on_data to write the streaming data into a csv file
+def on_data(self, data):
+        try:
+            savefile = open('twitDB.csv','a')
+            savefile.write(data)
+            savefile.write('\n')
+            savefile.close()
+            return(True)
+        except BaseException, e:
+            print 'failed on data,',str(e)
+            time.sleep(5)
