@@ -38,3 +38,20 @@ def on_data(self, data):
         except BaseException, e:
             print 'failed on data,',str(e)
             time.sleep(5)
+
+
+#Trimming out only the required data out from the data saved from above
+def on_data(self, data):
+        try:
+            tweet = data.split(',"text":"')[1].split('","source')[0]
+            print tweet
+            #savethis = str(time.time()) + '::'+tweet
+            savefile = open('twitDB.csv','a')
+            savefile.write(tweet)
+            savefile.write('\n')
+            savefile.close()
+            return(True)
+        except BaseException, e:
+            print 'failed on data,',str(e)
+            time.sleep(5)
+
