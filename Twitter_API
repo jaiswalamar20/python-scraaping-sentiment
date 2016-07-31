@@ -1,7 +1,9 @@
+#Need to install tweepy on the local system first.
+
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-
+import time
 
 #consumer key, consumer secret, access token, access secret.
 ckey="asdfasdf"
