@@ -9,6 +9,39 @@ cj = CookieJar()
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
 opener.addheaders = [('User-agent','Mozilla/5.0')]
 
+keyword = 'obama'
+startinglink = 'https://www.twitter.com/search/realtime?q='
+
+def main():
+    try:
+        Sourcecode = opener.open('https://www.twitter.com/search/realtime?q='+keyword+'&src=hash')
+        print sourcecode
+        splitsource = re.findall(r'<p class.....(.*?)</p>')
+        for item in splitsouce:
+            print item
+            time.sleep(555)
+
+        except Exception, e:
+            print str(e)
+
+
+    except Exception, e:
+        print str(e)
+
+
+main()
+
+import urllib2
+from urllib2 import urlopen
+import re
+import cookielib
+from cookielib import CookieJar
+import time
+
+cj = CookieJar()
+opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+opener.addheaders = [('User-agent','Mozilla/5.0')]
+
 
 def main():
     try:
