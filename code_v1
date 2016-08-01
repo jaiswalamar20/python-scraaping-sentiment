@@ -16,9 +16,10 @@ def main():
     try:
         Sourcecode = opener.open('https://www.twitter.com/search/realtime?q='+keyword+'&src=hash')
         print sourcecode
-        splitsource = re.findall(r'<p class.....(.*?)</p>')
+        splitsource = re.findall(r'<p class.....(.*?)</p>',sourcecode)
         for item in splitsouce:
             print item
+            print re.sub(r'<.*?>','',item)
             time.sleep(555)
 
         except Exception, e:
