@@ -43,6 +43,7 @@ def on_data(self, data):
 #Trimming out only the required data out from the data saved from above
 def on_data(self, data):
         try:
+            uid = data.split('","id":')[1].split(',"id_str"')[0]
             tweet = data.split(',"text":"')[1].split('","source')[0]
             print tweet
             #savethis = str(time.time()) + '::'+tweet
